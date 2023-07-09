@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              dark_accent: "#355C7D",
+              background: "#FEFEFE",
+              navbar_focus: "#006CC726",
+              dark_component_accent: "#85B9E566",
+              light_component_accent: "#85B9E526",
+              red_component_accent: "#FCEBEC",
+              sidebar_black: "#142B3F",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="grid grid-cols-6 h-screen">
+    <div class="col-span-1 bg-background flex flex-col">
+      <div
+        class="mx-6 mt-6 p-3 flex flex-row items-center bg-dark_accent rounded-lg"
+      >
+        <img src="twopoint.png" />
+        <p class="ml-4 text-white font-bold text-xl">Two Point<br />Hospital</p>
+      </div>
+      <p class="text-center my-2">Medical Analytical Dashboard</p>
+      <p class="text-start text-sm font-bold ml-8">Quick Menu</p>
+      <div class="h-4"></div>
+      <div class="flex flex-col ml-6">
+        <div class="flex-row flex items-center my-1 bg-navbar_focus pl-4">
+          <img src="overview.svg" class="py-2 h-9 w-9" />
+          <p class="ml-4 font-bold text-dark_accent py-2">Overview</p>
+          <div class="grow"></div>
+          <div class="h-full w-1 bg-dark_accent"></div>
+        </div>
+        <div class="flex-row flex items-center my-1 pl-4">
+          <img src="appointments.svg" class="py-2 h-9 w-9" />
+          <p
+            class="ml-4 font-bolddark_accent py-2 font-semibold text-sidebar_black"
+          >
+            Appointments
+          </p>
+          <div class="grow"></div>
+        </div>
+        <div class="flex-row flex items-center my-1 pl-4">
+          <img src="patients.svg" class="py-2 h-9 w-9" />
+          <p
+            class="ml-4 font-bolddark_accent py-2 font-semibold text-sidebar_black"
+          >
+            Patients
+          </p>
+          <div class="grow"></div>
+        </div>
+      </div>
+      <div class="h-4"></div>
+      <p class="text-start text-sm font-bold ml-8">Hospital Analytics</p>
+      <div class="h-4"></div>
+      <div class="flex flex-col ml-6">
+        <div class="flex-row flex items-center my-1 pl-4">
+          <img src="staff.svg" class="py-2 h-9 w-9" />
+          <p
+            class="ml-4 font-bolddark_accent py-2 font-semibold text-sidebar_black"
+          >
+            Staff
+          </p>
+          <div class="grow"></div>
+        </div>
+        <div class="flex-row flex items-center my-1 pl-4">
+          <img src="rooms.svg" class="py-2 h-9 w-9" />
+          <p
+            class="ml-4 font-bolddark_accent py-2 font-semibold text-sidebar_black"
+          >
+            Rooms
+          </p>
+          <div class="grow"></div>
+        </div>
+        <div class="flex-row flex items-center my-1 pl-4">
+          <img src="payments.svg" class="py-2 h-9 w-9" />
+          <p
+            class="ml-4 font-bolddark_accent py-2 font-semibold text-sidebar_black"
+          >
+            Payments
+          </p>
+          <div class="grow"></div>
+        </div>
+      </div>
+      <div class="grow"></div>
+      <div class="flex flex-col ml-6">
+        <div class="flex-row flex items-center my-1 pl-4">
+          <img src="help.svg" class="py-2 h-9 w-9" />
+          <p
+            class="ml-4 font-bolddark_accent py-2 font-semibold text-sidebar_black"
+          >
+            Help Center
+          </p>
+          <div class="grow"></div>
+        </div>
+        <div class="flex-row flex items-center my-1 pl-4">
+          <img src="settings.svg" class="py-2 h-9 w-9" />
+          <p
+            class="ml-4 font-bolddark_accent py-2 font-semibold text-sidebar_black"
+          >
+            Settings
+          </p>
+          <div class="grow"></div>
+        </div>
+        <div class="flex-row flex items-center my-1 pl-4">
+          <img src="logout.svg" class="py-2 h-9 w-9" />
+          <p
+            class="ml-4 font-bolddark_accent py-2 font-semibold text-sidebar_black"
+          >
+            Log Out
+          </p>
+          <div class="grow"></div>
+        </div>
+      </div>
+      <div class="h-4"></div>
+    </div>
+    <div class="col-span-5 bg-background pr-6 py-6 flex flex-col">
+      <div class="border-b-2 border-black pl-6 pb-2 text-2xl font-bold pt-2">
+        Dashboard
+      </div>
+      <div class="grow ml-6 mt-4 flex flex-col">
+        <div class="flex flex-row items-center">
+          <div class="flex flex-col space-y-1">
+            <p class="text-xl font-bold">Welcome back, Michael.</p>
+            <p class="text-semibold text-gray-600">
+              Dashboard updated with latest data for the past 4 days. Adjust
+              date filter for further updates.
+            </p>
+          </div>
+          <div class="grow"></div>
+          <div class="relative inline-block text-left">
+            <div>
+              <button
+                type="button"
+                class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                id="menu-button"
+                aria-expanded="true"
+                aria-haspopup="true"
+              >
+                Last 4 Days
+                <svg
+                  class="-mr-1 h-5 w-5 text-gray-400"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="w-4"></div>
+          <div
+            class="py-2 px-4 rounded-lg bg-dark_accent flex flex-row space-x-2 text-white items-center"
+          >
+            <img src="plus.svg" class="h-5 w-5" />
+            <p class="">Make a report</p>
+          </div>
+        </div>
+        <div class="grow mt-4 grid grid-cols-3 gap-4 grid-rows-3">
+          <div
+            class="col-span-1 row-span-1 bg-dark_component_accent rounded-lg"
+          ></div>
+          <div
+            class="col-span-1 row-span-1 bg-light_component_accent rounded-lg"
+          ></div>
+          <div
+            class="col-span-1 p-6 flex flex-col row-span-3 bg-light_component_accent rounded-lg"
+          >
+            <div
+              class="text-xl font-bold flex-row flex items-center justify-between"
+            >
+              <p>Upcoming Appointments</p>
+              <svg
+                class="h-5 w-5 text-gray-400"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
+            <div class="h-4"></div>
+            <div class="flex flex-row items-center">
+              <p class="text-xl font-bold">Today</p>
+              <div class="w-4"></div>
+              <div class="text-xs px-4 py-1 rounded-full bg-white">3</div>
+              <div class="grow"></div>
+              <div class="text-xs px-4 py-1 rounded-full bg-white">See all</div>
+            </div>
+            <div class="h-4"></div>
+            <div class="flex flex-col bg-white rounded p-3">g</div>
+          </div>
+          <div class="col-span-2 row-span-1 bg-red-400 rounded-lg"></div>
+          <div class="col-span-1 row-span-1 bg-red-400 rounded-lg"></div>
+          <div
+            class="col-span-1 row-span-1 bg-light_component_accent rounded-lg"
+          ></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
