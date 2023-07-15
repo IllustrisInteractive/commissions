@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Import stylesheet-->
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script>
       tailwind.config = {
         theme: {
@@ -21,114 +24,127 @@
         },
       };
     </script>
+    <style>
+      .navbar_item {
+        display: flex;
+        padding-left: 1rem;
+        margin-top: 0.25rem;
+        margin-bottom: 0.25rem;
+        flex-direction: row;
+        align-items: center;
+      }
+    </style>
   </head>
   <body class="grid grid-cols-6 h-screen">
     <div class="col-span-1 bg-background flex flex-col">
-      <div
-        class="mx-6 mt-6 p-3 flex flex-row items-center bg-dark_accent rounded-lg"
-      >
+      <div class="title_card">
         <img src="twopoint.png" />
-        <p class="ml-4 text-white font-bold text-xl">Two Point<br />Hospital</p>
+        <p class="">Two Point<br />Hospital</p>
       </div>
-      <p class="text-center my-2">Medical Analytical Dashboard</p>
+      <p class="title_inbetween">Medical Analytical Dashboard</p>
       <p class="text-start text-sm font-bold ml-8">Quick Menu</p>
       <div class="h-4"></div>
-      <div class="flex flex-col ml-6">
-        <div class="flex-row flex items-center my-1 bg-navbar_focus pl-4">
-          <img src="overview.svg" class="py-2 h-9 w-9" />
-          <p class="ml-4 font-bold text-dark_accent py-2">Overview</p>
+      <div class="quick_menu">
+        <div class="quick_menu_item">
+          <img src="overview.svg" />
+          <p class="">Overview</p>
           <div class="grow"></div>
-          <div class="h-full w-1 bg-dark_accent"></div>
+          <div class="quick_menu_item_active"></div>
         </div>
-        <div class="flex-row flex items-center my-1 pl-4">
-          <img src="appointments.svg" class="py-2 h-9 w-9" />
-          <p
-            class="ml-4 font-bolddark_accent py-2 font-semibold text-sidebar_black"
-          >
-            Appointments
-          </p>
+        <div class="quick_menu_item_noactive">
+          <img src="appointments.svg" />
+          <p>Appointments</p>
           <div class="grow"></div>
         </div>
-        <div class="flex-row flex items-center my-1 pl-4">
-          <img src="patients.svg" class="py-2 h-9 w-9" />
-          <p
-            class="ml-4 font-bolddark_accent py-2 font-semibold text-sidebar_black"
-          >
-            Patients
-          </p>
+        <div class="quick_menu_item_noactive">
+          <img src="patients.svg" />
+          <p>Patients</p>
           <div class="grow"></div>
         </div>
       </div>
       <div class="h-4"></div>
       <p class="text-start text-sm font-bold ml-8">Hospital Analytics</p>
       <div class="h-4"></div>
-      <div class="flex flex-col ml-6">
-        <div class="flex-row flex items-center my-1 pl-4">
-          <img src="staff.svg" class="py-2 h-9 w-9" />
-          <p
-            class="ml-4 font-bolddark_accent py-2 font-semibold text-sidebar_black"
-          >
-            Staff
-          </p>
+      <div class="quick_menu">
+        <button class="quick_menu_item_noactive collapsible">
+          <img src="staff.svg" />
+          <p>Staff</p>
+          <div class="grow"></div>
+        </button>
+        <div class="content_collapsible">
+          <button class="quick_menu_item_noactive">
+            <img src="doctor.svg" />
+            <p>Doctors</p>
+            <div class="grow"></div>
+          </button>
+          <button class="quick_menu_item_noactive">
+            <img src="nurses.svg" />
+            <p>Nurses</p>
+            <div class="grow"></div>
+          </button>
+        </div>
+        <script>
+          var coll = document.getElementsByClassName("collapsible");
+          var i;
+
+          for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function () {
+              this.classList.toggle("active");
+              var content = this.nextElementSibling;
+              if (content.style.display === "flex") {
+                content.style.display = "none";
+              } else {
+                content.style.display = "flex";
+                content.style.flexDirection = "column";
+              }
+            });
+          }
+        </script>
+        <div class="quick_menu_item_noactive">
+          <img src="rooms.svg" />
+          <p>Rooms</p>
           <div class="grow"></div>
         </div>
-        <div class="flex-row flex items-center my-1 pl-4">
-          <img src="rooms.svg" class="py-2 h-9 w-9" />
-          <p
-            class="ml-4 font-bolddark_accent py-2 font-semibold text-sidebar_black"
-          >
-            Rooms
-          </p>
-          <div class="grow"></div>
-        </div>
-        <div class="flex-row flex items-center my-1 pl-4">
-          <img src="payments.svg" class="py-2 h-9 w-9" />
-          <p
-            class="ml-4 font-bolddark_accent py-2 font-semibold text-sidebar_black"
-          >
-            Payments
-          </p>
+        <div class="quick_menu_item_noactive">
+          <img src="payments.svg" />
+          <p>Payments</p>
           <div class="grow"></div>
         </div>
       </div>
       <div class="grow"></div>
-      <div class="flex flex-col ml-6">
-        <div class="flex-row flex items-center my-1 pl-4">
-          <img src="help.svg" class="py-2 h-9 w-9" />
-          <p
-            class="ml-4 font-bolddark_accent py-2 font-semibold text-sidebar_black"
-          >
-            Help Center
-          </p>
+      <div class="quick_menu">
+        <div class="quick_menu_item_noactive">
+          <img src="help.svg" />
+          <p>Help Center</p>
           <div class="grow"></div>
         </div>
-        <div class="flex-row flex items-center my-1 pl-4">
-          <img src="settings.svg" class="py-2 h-9 w-9" />
-          <p
-            class="ml-4 font-bolddark_accent py-2 font-semibold text-sidebar_black"
-          >
-            Settings
-          </p>
+        <div class="quick_menu_item_noactive">
+          <img src="settings.svg" />
+          <p>Settings</p>
           <div class="grow"></div>
         </div>
-        <div class="flex-row flex items-center my-1 pl-4">
-          <img src="logout.svg" class="py-2 h-9 w-9" />
-          <p
-            class="ml-4 font-bolddark_accent py-2 font-semibold text-sidebar_black"
-          >
-            Log Out
-          </p>
+        <div class="quick_menu_item_noactive">
+          <img src="logout.svg" />
+          <p>Log Out</p>
           <div class="grow"></div>
         </div>
       </div>
       <div class="h-4"></div>
     </div>
-    <div class="col-span-5 bg-background pr-6 py-6 flex flex-col">
-      <div class="border-b-2 border-black pl-6 pb-2 text-2xl font-bold pt-2">
-        Dashboard
+    <div class="dashboard_container">
+      <div class="dashboard_title_row flex flex-row items-center">
+        <p>Dashboard</p>
+        <div class="grow"></div>
+        <img src="envelope.svg" class="h-5 w-5" />
+        <div class="w-4"></div>
+        <img src="notifications.svg" class="h-5 w-5" />
+        <div class="mx-4">|</div>
+        <img src="Icon.png" />
+        <div class="w-4"></div>
+        <p class="text-sm pr-8">Michael</p>
       </div>
-      <div class="grow ml-6 mt-4 flex flex-col">
-        <div class="flex flex-row items-center">
+      <div class="dashboard_flex_col">
+        <div class="centered_flex_row">
           <div class="flex flex-col space-y-1">
             <p class="text-xl font-bold">Welcome back, Michael.</p>
             <p class="text-semibold text-gray-600">
@@ -141,7 +157,7 @@
             <div>
               <button
                 type="button"
-                class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                class="menu_btn"
                 id="menu-button"
                 aria-expanded="true"
                 aria-haspopup="true"
@@ -171,15 +187,70 @@
           </div>
         </div>
         <div class="grow mt-4 grid grid-cols-3 gap-4 grid-rows-3">
-          <div
-            class="col-span-1 row-span-1 bg-dark_component_accent rounded-lg"
-          ></div>
-          <div
-            class="col-span-1 row-span-1 bg-light_component_accent rounded-lg"
-          ></div>
-          <div
-            class="col-span-1 p-6 flex flex-col row-span-3 bg-light_component_accent rounded-lg"
-          >
+          <div class="one_col_widget_dark flex flex-col p-6">
+            <div class="flex flex-row">
+              <div class="flex flex-col grow">
+                <p class="text-xl font-bold">Total Patients</p>
+                <p>Last updated at <b>June 23, 2023</b></p>
+                <div
+                  class="flex flex-row text-6xl font-bold items-center py-8"
+                  style="gap: 1rem"
+                >
+                  <p>17,335</p>
+                  <div
+                    class="px-4 py-2 text-xl bg-[#4CCF71] text-white rounded-full"
+                  >
+                    +3.5%
+                  </div>
+                </div>
+              </div>
+              <img src="total_patients.svg" class="h-24 w-24" />
+            </div>
+            <div class="grow"></div>
+            <p class="text-sm">
+              Data showed an increase from <b>13,270</b> to
+              <b>17,335</b> patients compared to last month's average.
+            </p>
+          </div>
+          <div class="one_col_widget flex flex-col p-6">
+            <div class="flex flex-row">
+              <div class="flex flex-col grow">
+                <p class="text-xl font-bold">Available Rooms</p>
+                <p>Last updated at <b>June 23, 2023</b></p>
+                <div
+                  class="flex flex-row text-6xl font-bold items-center py-8"
+                  style="gap: 1rem"
+                >
+                  <p>114</p>
+
+                  <div
+                    class="px-4 py-2 text-xl bg-[#4CCF71] text-white rounded-full"
+                  >
+                    +100
+                  </div>
+                </div>
+              </div>
+              <img src="available_rooms.svg" class="h-24 w-24" />
+            </div>
+            <div class="grow"></div>
+            <div class="flex flex-row justify-evenly">
+              <div class="flex flex-row items-center space-x-4">
+                <img src="private_rooms.svg" class="h-12 w-12" />
+                <div>
+                  <p class="font-semibold text-xl">Private Rooms</p>
+                  <p class="font-bold text-4xl">57</p>
+                </div>
+              </div>
+              <div class="flex flex-row items-center space-x-4">
+                <img src="general_rooms.svg" class="h-12 w-12" />
+                <div>
+                  <p class="font-semibold text-xl">General Rooms</p>
+                  <p class="font-bold text-4xl">58</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="one_col_full_row_widget">
             <div
               class="text-xl font-bold flex-row flex items-center justify-between"
             >
@@ -201,18 +272,304 @@
             <div class="flex flex-row items-center">
               <p class="text-xl font-bold">Today</p>
               <div class="w-4"></div>
-              <div class="text-xs px-4 py-1 rounded-full bg-white">3</div>
+              <div class="bubbles">3</div>
               <div class="grow"></div>
-              <div class="text-xs px-4 py-1 rounded-full bg-white">See all</div>
+              <div class="bubbles">See all</div>
             </div>
             <div class="h-4"></div>
-            <div class="flex flex-col bg-white rounded p-3 flex-col"></div>
+            <div class="appointment_card_container">
+              <p class="title">Follow up consultation: Cardiology</p>
+              <div class="content">
+                <img src="clock.svg" />
+                <p>10:30 AM - 11:30 AM</p>
+              </div>
+              <div class="flex flex-row space-x-2">
+                <img src="doctor.svg" class="h-5 w-5" />
+                <p class="text-sm font-semibold">Dr. Emily Johnson</p>
+              </div>
+              <div class="flex flex-row">
+                <div class="in_progress">In Progress</div>
+                <div class="grow"></div>
+                <div class="">Ongoing</div>
+              </div>
+            </div>
+            <div class="h-4"></div>
+            <div class="appointment_card_container">
+              <p class="title">Knee pain and swelling: Orthopedics</p>
+              <div class="content">
+                <img src="clock.svg" />
+                <p>2:00 PM - 3:30 PM</p>
+              </div>
+              <div class="flex flex-row space-x-2">
+                <img src="doctor.svg" class="h-5 w-5" />
+                <p class="text-sm font-semibold">Dr. Michael Davis</p>
+              </div>
+              <div class="flex flex-row">
+                <div class="completed">Completed</div>
+                <div class="grow"></div>
+                <div class="">View details</div>
+              </div>
+            </div>
+            <div class="h-4"></div>
+            <div class="flex flex-row items-center">
+              <p class="text-xl font-bold">Tomorrow</p>
+              <div class="w-4"></div>
+              <div class="bubbles">4</div>
+              <div class="grow"></div>
+              <div class="bubbles">See all</div>
+            </div>
+            <div class="h-4"></div>
+            <div class="appointment_card_container">
+              <p class="title">Skin rash and persistent itching</p>
+              <div class="content">
+                <img src="clock.svg" />
+                <p>10:30 AM - 11:30 AM</p>
+              </div>
+              <div class="flex flex-row space-x-2">
+                <img src="doctor.svg" class="h-5 w-5" />
+                <p class="text-sm font-semibold">Dr. Sarah Thompson</p>
+              </div>
+              <div class="flex flex-row">
+                <div class="not_started">Not started</div>
+                <div class="grow"></div>
+                <div class="">View Details</div>
+              </div>
+            </div>
+            <div class="h-4"></div>
+            <div class="appointment_card_container">
+              <p class="title">Abdominal pain and digestive issues</p>
+              <div class="content">
+                <img src="clock.svg" />
+                <p>2:00 PM - 3:30 PM</p>
+              </div>
+              <div class="flex flex-row space-x-2">
+                <img src="doctor.svg" class="h-5 w-5" />
+                <p class="text-sm font-semibold">Dr. Jennifer Anderson</p>
+              </div>
+              <div class="flex flex-row">
+                <div class="not_started">Not started</div>
+                <div class="grow"></div>
+                <div class="">View details</div>
+              </div>
+            </div>
+            <div class="h-4"></div>
+            <div class="self-center absolute bottom-4">
+              <div class="view_all_appointments">View all appointments</div>
+            </div>
           </div>
-          <div class="col-span-2 row-span-1 bg-red-400 rounded-lg"></div>
-          <div class="col-span-1 row-span-1 bg-red-400 rounded-lg"></div>
+          <div class="col-span-2 row-span-1 rounded-lg flex flex-col p-4">
+            <div class="flex flex-row">
+              <p class="text-xl font-bold mb-2">Patient Statistics</p>
+            </div>
+            <div class="flex space-x-2 flex-row">
+              <canvas
+                class="pr-2"
+                id="myChart3"
+                style="height: 60%; max-width: 50%"
+              ></canvas>
+              <div class="grow grid grid-rows-2 gap-y-4">
+                <div class="flex flex-col p-4 bg-light_component_accent">
+                  <p class="font-bold">Total Admitted</p>
+                  <p>Last updated on <b>June 23, 2023</b></p>
+                  <div
+                    class="font-bold text-4xl flex flex-row items-center space-x-2"
+                  >
+                    <p>114</p>
+                    <div
+                      class="px-2 py-1 text-sm bg-[#4CCF71] text-white rounded-full"
+                    >
+                      +3.5%
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-col p-4 bg-[#FCEBEC]">
+                  <p class="font-bold">Available Treatment Cost</p>
+                  <p>Last updated on <b>June 23, 2023</b></p>
+                  <div
+                    class="font-bold text-4xl flex flex-row items-center space-x-2"
+                  >
+                    <p class="font-bold text-4xl">$11,037</p>
+                    <div
+                      class="px-2 py-1 text-sm bg-[#CF4C4C] text-white rounded-full"
+                    >
+                      -2.3%
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- This script will control the bar chart-->
+            <script>
+              // Define the data
+              data = {
+                labels: ["Mon", "Tue", "Wed", "Thu"],
+                datasets: [
+                  {
+                    label: "Appointments",
+                    backgroundColor: "#725A7A",
+                    borderColor: "#355C7D",
+                    data: [
+                      10746 * 0.4,
+                      10746 * 0.15,
+                      10746 * 0.3,
+                      10746 * 0.25,
+                    ],
+                  },
+                  {
+                    label: "Appointments2",
+                    backgroundColor: "#C56D86",
+                    borderColor: "#355C7D",
+                    data: [7365 * 0.2, 7365 * 0.2, 7365 * 0.25, 7365 * 0.3],
+                  },
+                ],
+              };
+
+              // Define the options
+              options = {
+                responsive: true,
+                maintainAspectRatio: true,
+                legend: { display: false },
+                scales: {
+                  yAxes: [
+                    {
+                      ticks: {
+                        beginAtZero: true,
+                      },
+                    },
+                  ],
+                },
+              };
+
+              // Get the context of the canvas element we want to select
+              var ctx = document.getElementById("myChart3").getContext("2d");
+
+              // Instantiate a new chart
+              var myChart = new Chart(ctx, {
+                type: "bar",
+                data: data,
+                options: options,
+              });
+            </script>
+          </div>
+          <div class="col-span-1 row-span-1 flex flex-col rounded-lg p-4">
+            <div class="flex flex-row items-center">
+              <p class="text-xl font-bold mb-2">Patients' Gender Average</p>
+            </div>
+            <div class="flex flex-row grow">
+              <div class="flex flex-col grow">
+                <div class="flex flex-row space-x-2 mb-2">
+                  <div class="h-3 w-4 bg-[#355C7D]"></div>
+                  <div class="flex flex-col">
+                    <p class="text-xs">Male</p>
+                    <p class="font-bold text-lg">10,746</p>
+                  </div>
+                </div>
+                <div class="flex flex-row space-x-2 mb-2">
+                  <div class="h-3 w-4 bg-[#FF7682]"></div>
+                  <div class="flex flex-col">
+                    <p class="text-xs">Female</p>
+                    <p class="font-bold text-lg">8,708</p>
+                  </div>
+                </div>
+              </div>
+              <canvas
+                id="myChart"
+                style="width: 100%; max-width: 700px"
+              ></canvas>
+              <script>
+                data = {
+                  datasets: [
+                    {
+                      data: [10746, 8708],
+                      backgroundColor: ["#355C7D", "#FF7682"],
+                    },
+                  ],
+
+                  // These labels appear in the legend and in the tooltips when hovering different arcs
+                  labels: ["Male", "Female"],
+                };
+
+                new Chart("myChart", {
+                  type: "doughnut",
+                  data: data,
+                  options: {
+                    cutoutPercentage: 75,
+                    legend: { display: false, position: "left" },
+                  },
+                });
+              </script>
+            </div>
+          </div>
           <div
-            class="col-span-1 row-span-1 bg-light_component_accent rounded-lg"
-          ></div>
+            class="col-span-1 row-span-1 flex flex-col bg-light_component_accent rounded-lg p-4"
+          >
+            <div class="flex flex-row items-center">
+              <p class="text-xl font-bold mb-2">Patients' Age Average</p>
+            </div>
+            <div class="flex flex-row grow">
+              <div class="flex flex-col grow">
+                <div class="flex flex-row space-x-2 mb-2">
+                  <div class="h-3 w-4 bg-[#355C7D]"></div>
+                  <div class="flex flex-col">
+                    <p class="text-xs">Age 0-10</p>
+                    <p class="font-bold text-lg">10,746</p>
+                  </div>
+                </div>
+                <div class="flex flex-row space-x-2 mb-2">
+                  <div class="h-3 w-4 bg-[#FF7682]"></div>
+                  <div class="flex flex-col">
+                    <p class="text-xs">Age 11-17</p>
+                    <p class="font-bold text-lg">3,708</p>
+                  </div>
+                </div>
+                <div class="flex flex-row space-x-2 mb-2">
+                  <div class="h-3 w-4 bg-[#C56D86]"></div>
+                  <div class="flex flex-col">
+                    <p class="text-xs">Age 18-50</p>
+                    <p class="font-bold text-lg">6,589</p>
+                  </div>
+                </div>
+                <div class="flex flex-row space-x-2 mb-2">
+                  <div class="h-3 w-4 bg-[#725A7A]"></div>
+                  <div class="flex flex-col">
+                    <p class="text-xs">Age 51+</p>
+                    <p class="font-bold text-lg">2,030</p>
+                  </div>
+                </div>
+              </div>
+              <canvas
+                id="myChart2"
+                style="max-width: 50%; height: 100%"
+              ></canvas>
+              <script>
+                data = {
+                  datasets: [
+                    {
+                      data: [10746, 3708, 6589, 2030],
+                      backgroundColor: [
+                        "#355C7D",
+                        "#FF7682",
+                        "#C56D86",
+                        "#725A7A",
+                      ],
+                    },
+                  ],
+
+                  // These labels appear in the legend and in the tooltips when hovering different arcs
+                  labels: ["Age 0-10", "Age 11-17", "Age 18-50", "Age 51+"],
+                };
+
+                new Chart("myChart2", {
+                  type: "doughnut",
+                  data: data,
+                  options: {
+                    cutoutPercentage: 75,
+                    legend: { display: false, position: "left" },
+                  },
+                });
+              </script>
+            </div>
+          </div>
         </div>
       </div>
     </div>
